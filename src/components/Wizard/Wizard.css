@@ -1,0 +1,19 @@
+.wizard-container {
+    background: #AFD4C0;
+    width: 50%;
+    min-height: 100%; 
+}
+
+.step-container {
+    background: #AFD4C0;
+    width: 50%;
+    min-height: 100%; 
+}
+
+input, label {
+    display:block;
+}
+
+.location-container {
+    display: flex;
+}

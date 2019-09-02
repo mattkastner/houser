@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import routes from './routes/routes'
+import axios from 'axios'
+
+import store from './redux/store'
+import {SET_HOUSES} from './redux/reducer'
+
+import Header from './components/Header/Header'
+
+import 'reset-css'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+export default class App extends Component {
+  constructor(){
+    super()
+
+    this.state = {
+        reduxState: store.getState()
+    }
+  }
+
+  componentDidMount(){
+    this.getHouses()
+
+    store.subscribe(() => {
+      this.setState({
+        reduxState: store.getState()
+      })
+    })
+  }
+
+  getHouses = () => {
+    axios.get('/api/house/get').then((res) => {
+      store.dispatch({type: SET_HOUSES, payload: res.data})
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    return (
+    <div className="App" >
+      <Header />
+      {routes}
     </div>
-  );
+    )
+  }
 }
 
-export default App;

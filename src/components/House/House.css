@@ -1,0 +1,24 @@
+.listing-container {
+    margin: 20px;
+    width: 90%;
+    background: #DEDEDE;
+    display: flex;
+}
+
+.display-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-delete {
+    width: 100%;
+}
+
+.image-container {
+    width: 30%;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
